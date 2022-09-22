@@ -1,24 +1,36 @@
 class Solution {
     public List<List<Integer>> generate(int numRows) {
-        List<List<Integer>> triangle = new ArrayList<List<Integer>>();
-        if(numRows == 0){
-            return triangle;
-        }
-        triangle.add(new ArrayList<>());
-        triangle.get(0).add(1);
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+//         if(numRows == 0){
+//             return triangle;
+//         }
+//         triangle.add(new ArrayList<>());
+//         triangle.get(0).add(1);
         
-        for(int rowNum =1; rowNum< numRows; rowNum++){
-            List<Integer> row = new ArrayList<>();
-            List<Integer> prevRow = triangle.get(rowNum-1);
+//         for(int rowNum =1; rowNum< numRows; rowNum++){
+//             List<Integer> row = new ArrayList<>();
+//             List<Integer> prevRow = triangle.get(rowNum-1);
             
-            row.add(1);
+//             row.add(1);
             
-            for(int j = 1; j<rowNum;j++){
-                row.add(prevRow.get(j-1) + prevRow.get(j));
-            }
+//             for(int j = 1; j<rowNum;j++){
+//                 row.add(prevRow.get(j-1) + prevRow.get(j));
+//             }
+//             row.add(1);
+//             triangle.add(row);
+//         }
+//         return triangle;
+        List<Integer> row, pre=null;
+        for(int i=0; i<numRows;i++){
+            row = new ArrayList<Integer>();
+        for(int j=0; j<=i; j++)
+            if(j == 0 || j == i)
             row.add(1);
-            triangle.add(row);
+        else
+            row.add(pre.get(j - 1) + pre.get(j));
+        pre = row;
+        res.add(row);
         }
-        return triangle;
+        return res;
     }
 }
