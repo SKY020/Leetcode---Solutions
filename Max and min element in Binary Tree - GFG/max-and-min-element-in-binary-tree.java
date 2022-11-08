@@ -105,21 +105,72 @@ class GFG {
 class Node {
     int data;
     Node left, right;
-    
     public Node(int data){
         this.data = data;
     }
 }
 */
+//Recursive solution 
+
+// class Solution{
+//     public static int findMax(Node root){
+//         if(root == null) return Integer.MIN_VALUE;
+//         else
+//         return Math.max(root.data, Math.max(findMax(root.left), findMax(root.right)));
+//     }
+//     public static int findMin(Node root){
+//         if(root == null) return Integer.MAX_VALUE;
+//         else
+//         return Math.min(root.data, Math.min(findMin(root.left), findMin(root.right)));
+//     }
+// }
+
+
 class Solution{
     public static int findMax(Node root){
-        if(root == null) return Integer.MIN_VALUE;
-        else
-        return Math.max(root.data, Math.max(findMax(root.left), findMax(root.right)));
+        int max = Integer.MIN_VALUE;
+        
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        
+        while(!q.isEmpty()){
+            Node nodeData = q.poll();
+            
+            if(nodeData.data > max){
+                max = nodeData.data;
+            }
+            
+            if(nodeData.left != null){
+                q.add(nodeData.left);
+            }
+            
+            if(nodeData.right != null){
+                q.add(nodeData.right);
+            }
+        }
+        return max;
     }
     public static int findMin(Node root){
-        if(root == null) return Integer.MAX_VALUE;
-        else
-        return Math.min(root.data, Math.min(findMin(root.left), findMin(root.right)));
+        int min = Integer.MAX_VALUE;
+        
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        
+        while(!q.isEmpty()){
+            Node nodeData = q.poll();
+            
+            if(nodeData.data < min){
+                min = nodeData.data;
+            }
+            
+            if(nodeData.left != null){
+                q.add(nodeData.left);
+            }
+            
+            if(nodeData.right != null){
+                q.add(nodeData.right);
+            }
+        }
+        return min;
     }
 }
