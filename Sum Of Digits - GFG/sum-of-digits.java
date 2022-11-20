@@ -25,12 +25,19 @@ class GFG
 //User function Template for Java
 class Solution{
     static int sumOfDigits(int N) {
-        int res = 0;
-        while(N>0){
-            res = res + N%10;
-            N = N/10;
-        }
-        return res;
+        // int res = 0;
+        // while(N>0){
+        //     res = res + N%10;
+        //     N = N/10;
+        // }
+        // return res;
+        
+        //Recursive solution
+        
+        if(N==0)
+            return 0;
+            else
+            return sumOfDigits(N/10) + N%10;
     }
 }
        
